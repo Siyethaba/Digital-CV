@@ -1961,7 +1961,7 @@ input, select, textarea {
 		}
 
 			header.major h1:after, header.major h2:after, header.major h3:after, header.major h4:after, header.major h5:after, header.major h6:after {
-				background: #dddddd;
+				background: #ec4141;
 				content: '';
 				display: block;
 				height: 2px;
@@ -2176,6 +2176,7 @@ input, select, textarea {
 		text-decoration: none;
 		border-bottom: none;
 		position: relative;
+		color: #636b6d;
 	}
 
 		.icon:before {
@@ -2219,31 +2220,78 @@ input, select, textarea {
 /* Image */
 
 	.image {
-		border: 0;
-		display: inline-block;
-		position: relative;
+		 border: 0;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
 	}
 
 		.image:before {
-			background: url("images/overlay.png");
-			content: '';
-			display: block;
-			height: 100%;
-			left: 0;
-			position: absolute;
-			top: 0;
-			width: 100%;
+			 background: url("images/overlay.png");
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
 		}
 
 		.image img {
-			display: block;
+			 display: block;
+    transition: transform 0.3s ease;
 		}
 
-		.image.left {
-			float: left;
-			margin: 0 1.5em 1em 0;
-			top: 0.25em;
-		}
+.image.primary {
+    border: 5px solid #8cd1a8;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(140, 209, 168, 0.3);
+    max-width: 300px;
+    margin: 0 auto 2em auto;
+}
+
+.image.primary img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image.primary:hover img {
+    transform: scale(1.05);
+}
+
+		.image.left,
+.image.right {
+    max-width: 40%;
+    border: 3px solid #8cd1a8;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(140, 209, 168, 0.2);
+}
+
+.image.left {
+    float: left;
+    margin: 0 1.5em 1em 0;
+    top: 0.25em;
+}
+
+.image.right {
+    float: right;
+    margin: 0 0 1em 1.5em;
+    top: 0.25em;
+}
+
+.image.left img,
+.image.right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
 		.image.right {
 			float: right;
@@ -2260,14 +2308,22 @@ input, select, textarea {
 			}
 
 		.image.fit {
-			display: block;
-			margin: 0 0 2em 0;
-			width: 100%;
-		}
+    display: block;
+    margin: 0 0 2em 0;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
 
-			.image.fit img {
-				width: 100%;
-			}
+.image.fit img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.image.fit:hover img {
+    transform: scale(1.02);
+}
 
 /* List */
 
@@ -2333,33 +2389,63 @@ input, select, textarea {
 
 /* Icons Grid */
 
-	ul.icons-grid {
-		list-style: none;
-		padding: 0;
-		position: relative;
-	}
+ul.icons-grid {
+    list-style: none;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
 
-		ul.icons-grid li {
-			display: block;
-			float: left;
-			padding: 3em 0;
-			width: 50%;
-		}
+ul.icons-grid li {
+    display: block;
+    padding: 3em 2em;
+    width: 50%;
+    border: 1px solid #e8e8e8;
+    border-right: none;
+    border-bottom: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.5);
+    position: relative;
+}
 
-			ul.icons-grid li h3 {
-				margin: 0;
-			}
+ul.icons-grid li:nth-child(2n) {
+    border-right: 1px solid #e8e8e8;
+}
 
-			ul.icons-grid li:nth-child(2n + 1) {
-				box-shadow: inset -1px 0 0 0 #dddddd, 1px 0 0 0 #dddddd;
-			}
+ul.icons-grid li:nth-last-child(-n+2) {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+ul.icons-grid li h3 {
+    margin: 1em 0 0.5em 0;
+}
+
+ul.icons-grid li:hover {
+    transform: translateY(-5px);
+    background: rgba(140, 209, 168, 0.05);
+    border-color: #8cd1a8;
+    box-shadow: 0 8px 20px rgba(140, 209, 168, 0.15);
+    z-index: 2;
+}
+
+ul.icons-grid li .icon {
+    transition: all 0.3s ease;
+}
+
+ul.icons-grid li:hover .icon {
+    color: #8cd1a8;
+    transform: scale(1.15);
+}
+
 
 			ul.icons-grid li:nth-child(2n + 3):before {
 				background: #dddddd;
 				content: '';
 				display: block;
 				height: 2px;
-				margin-top: -3em;
+				margin-top: -31em;
 				position: absolute;
 				width: 100%;
 			}
@@ -2834,6 +2920,7 @@ input, select, textarea {
 				color: #ffffff;
 				font-weight: 700;
 				margin: 1.5em 0 0 0;
+				background-color: rgba(0, 0, 0, 0.48);
 			}
 
 		#header .container {
@@ -2865,12 +2952,12 @@ input, select, textarea {
 		#footer .container {
 			padding: 5em 2.5em 3em 2.5em ;
 			background: rgba(255, 255, 255, 0.95);
-			box-shadow: inset 0 1px 0 0 #dddddd;
+			box-shadow: inset 0 1px 0 0 #757575;
 		}
 
 		#footer footer {
 			bottom: 2em;
-			color: rgba(255, 255, 255, 0.5);
+			color: rgba(255, 255, 255, 0.9);
 			left: 0;
 			position: absolute;
 			text-align: center;
@@ -2886,7 +2973,7 @@ input, select, textarea {
 			}
 
 				#footer footer a:hover {
-					color: #ffffff !important;
+					color: rgba(255, 0, 0, 0.55) !important;
 				}
 
 			#footer footer .copyright {
@@ -3123,6 +3210,163 @@ input, select, textarea {
 				.main .container .image.primary:first-child {
 					margin: -2em 0 2.5em 0;
 				}
+
+	/* Smooth scroll behavior */
+	html {
+		scroll-behavior: smooth;
+	}
+
+	/* Enhanced Header - Add fade-in animation */
+	#header header h1 {
+		animation: fadeInUp 1s ease-out;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+/* Enhanced primary button with better shadow */
+input[type="submit"].primary,
+input[type="reset"].primary,
+input[type="button"].primary,
+button.primary,
+.button.primary {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(140, 209, 168, 0.3);
+}
+
+input[type="submit"].primary:hover,
+input[type="reset"].primary:hover,
+input[type="button"].primary:hover,
+button.primary:hover,
+.button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(140, 209, 168, 0.4);
+}
+
+	/* Enhanced main container shadow */
+	.main .container {
+		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+		transition: transform 0.3s ease;
+	}
+
+	/* Hover effect for icons grid */
+	ul.icons-grid li {
+		transition: all 0.3s ease;
+	}
+
+ul.icons-grid li:hover {
+    transform: translateY(-5px);
+}
+
+ul.icons-grid li .icon {
+    transition: all 0.3s ease;
+}
+
+ul.icons-grid li:hover .icon {
+    color: #8cd1a8;
+    transform: scale(1.1);
+}
+
+	/* Better list spacing in content */
+	.content ul li {
+		margin-bottom: 1.5em;
+		line-height: 1.8em;
+	}
+
+	.content ul li strong {
+		color: #8cd1a8;
+	}
+
+/* Improved paragraph spacing */
+.content p {
+    line-height: 1.9em;
+}
+
+		/* Enhanced form focus states */
+		input[type="text"]:focus,
+		input[type="email"]:focus,
+		textarea:focus {
+			box-shadow: inset 0 0 0 2px #8cd1a8, 0 0 10px rgba(140, 209, 168, 0.2);
+			transition: all 0.3s ease;
+		}
+
+		/* Footer icons hover effect */
+		#footer footer ul.icons li a {
+			transition: all 0.3s ease;
+			display: inline-block;
+		}
+
+		#footer footer ul.icons li a:hover {
+			transform: translateY(-3px) scale(1.1);
+			color: #8cd1a8 !important;
+		}
+
+		/* Enhanced goto-next button */
+		.main .goto-next {
+			transition: all 0.3s ease;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.main .goto-next:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+		}
+
+/* Image hover effect */
+.image.fit.primary img {
+    transition: transform 0.3s ease;
+}
+
+.image.fit.primary:hover img {
+    transform: scale(1.02);
+}
+
+/* Section fade-in animation */
+section {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Container hover effect on desktop */
+@media screen and (min-width: 981px) {
+    .main .container:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+    }
+}
+
+/* Improved mobile touch targets */
+@media screen and (max-width: 736px) {
+    .button {
+        min-height: 48px;
+        line-height: 48px;
+    }
+}
+
+/* Better focus visibility for accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid #8cd1a8;
+    outline-offset: 2px;
+}
 
 		/* Footer */
 
